@@ -22,6 +22,27 @@
 		}
 	</style>
 	<script type="text/javascript">
+		/*
+		 * othello
+		 *
+		 * Copyright 2016 Àngel Mariages <angel[dot]mariages[at]gmail[dot]com>
+		 *
+		 * This program is free software; you can redistribute it and/or modify
+		 * it under the terms of the GNU General Public License as published by
+		 * the Free Software Foundation; either version 2 of the License, or
+		 * (at your option) any later version.
+		 *
+		 * This program is distributed in the hope that it will be useful,
+		 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+		 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		 * GNU General Public License for more details.
+		 *
+		 * You should have received a copy of the GNU General Public License
+		 * along with this program; if not, write to the Free Software
+		 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+		 * MA 02110-1301, USA.
+		 *
+ 		*/
 		var c,ctx;
 		var gameLoop;
 		var gameBoard = new Array(8);
@@ -40,7 +61,7 @@
 			resetBoard();
 
 			gameLoop = setInterval(function() {
-				drawBoard("4", c.width, c.height);
+				drawBoard("8", c.width, c.height);
 			}, 1000/60);
 			c.addEventListener('mousemove', function(event) {
 				var mousePos = getMousePos(event);
@@ -197,7 +218,7 @@
 		}
 
 		function drawBoard(lineWidth, width, height) {
-			//var colors = ["#6FFF00", "#FF00FF", "#FFFF00", "#4D4DFF", "#FE0001", "#FF4105", "#993CF3"]; //For debuging
+			var colors = ["#6FFF00", "#FF00FF", "#FFFF00", "#4D4DFF", "#FE0001", "#FF4105", "#993CF3"]; //For debuging
 			ctx.beginPath();
 			ctx.fillStyle = "#339966";
 			ctx.rect(0, 0, width, height);
@@ -216,8 +237,7 @@
 				}
 
 				ctx.beginPath();
-				//ctx.strokeStyle = colors[i - 1];
-				ctx.strokeStyle = "#000";
+				ctx.strokeStyle = colors[i - 1];
 				ctx.lineWidth = lineWidth;
 				ctx.moveTo(x, 0);
 				ctx.lineTo(x, height);
@@ -225,7 +245,8 @@
 				ctx.closePath();
 
 				ctx.beginPath();
-				//ctx.strokeStyle = colors[i - 1];
+				ctx.strokeStyle = colors[colors.length - i];
+				ctx.lineWidth = lineWidth;
 				ctx.moveTo(0, y);
 				ctx.lineTo(width, y);
 				ctx.stroke();
@@ -246,12 +267,12 @@
 			gameBoard[3][4] = new Cell(3,4,2);
 			gameBoard[4][4] = new Cell(4,4,1);
 
-			gameBoard[0][0] = new Cell(0,0,1);
+			/*gameBoard[0][0] = new Cell(0,0,1);
 			gameBoard[1][0] = new Cell(1,0,2);
 			gameBoard[0][1] = new Cell(0,1,2);
 
 			gameBoard[0][7] = new Cell(0,7,1);
-			gameBoard[0][6] = new Cell(0,6,2);
+			gameBoard[0][6] = new Cell(0,6,2);*/
 
 
 			/*gameBoard[3][3] = new Cell(3,3,1);
